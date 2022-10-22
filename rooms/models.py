@@ -1,4 +1,3 @@
-from tkinter import CASCADE
 from django.db import models
 
 
@@ -38,7 +37,10 @@ class Room(models.Model):
         max_length=20,
         choices=RoomKindChoices.choices,
     )
-    owner = models.ForeignKey("user.User", on_delete=CASCADE)
+    owner = models.ForeignKey(
+        "user.User",
+        on_delete=models.CASCADE,
+    )
 
 
 class Amenity(models.Model):
