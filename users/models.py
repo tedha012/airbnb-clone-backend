@@ -1,6 +1,3 @@
-from email.policy import default
-from locale import currency
-from random import choices
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
