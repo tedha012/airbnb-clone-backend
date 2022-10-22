@@ -1,3 +1,4 @@
+from tkinter import CASCADE
 from django.db import models
 from common.models import CommonModel
 
@@ -30,6 +31,12 @@ class Experience(CommonModel):
     description = models.TextField()
     perks = models.ManyToManyField(
         "experiences.Perk",
+    )
+    category = models.ForeignKey(
+        "categories.Category",
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
     )
 
     def __str__(self) -> str:
