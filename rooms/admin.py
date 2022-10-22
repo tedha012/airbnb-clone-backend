@@ -5,7 +5,7 @@ from .models import Room, Amenity
 @admin.register(Room)
 class RoomAdmin(admin.ModelAdmin):
 
-    plist_display = (
+    list_display = (
         "name",
         "price",
         "kind",
