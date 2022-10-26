@@ -3,6 +3,10 @@ from . import views
 
 urlpatterns = [
     path(
+        "",
+        views.Rooms.as_view(),
+    ),
+    path(
         "amenities/",
         views.Amenities.as_view(),
     ),
