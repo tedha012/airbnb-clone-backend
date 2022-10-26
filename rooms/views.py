@@ -3,7 +3,7 @@ from rest_framework.status import HTTP_204_NO_CONTENT
 from rest_framework.response import Response
 from rest_framework.exceptions import NotFound
 from .models import Amenity, Room
-from .serializers import AmenitySerializer, RoomListSerializer, RoomLDetailSerializer
+from .serializers import AmenitySerializer, RoomListSerializer, RoomDetailSerializer
 
 
 class Amenities(APIView):
@@ -64,6 +64,15 @@ class Rooms(APIView):
         serializer = RoomListSerializer(all_rooms, many=True)
         return Response(serializer.data)
 
+    def post(self, request):
+        serializer = RoomDetailSerializer(data=request.data)
+        if serializer.is_valid():
+            room = serializer.save()
+            serializer = RoomDetailSerializer(room)
+            return Response(serializer.data)
+        else:
+            return Response(serializer.errors)
+
 
 class RoomDetail(APIView):
     def get_object(self, pk):
@@ -74,5 +83,5 @@ class RoomDetail(APIView):
 
     def get(self, request, pk):
         room = self.get_object(pk)
-        serializer = RoomLDetailSerializer(room)
+        serializer = RoomDetailSerializer(room)
         return Response(serializer.data)
