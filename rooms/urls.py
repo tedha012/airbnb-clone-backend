@@ -11,6 +11,10 @@ urlpatterns = [
         views.RoomDetail.as_view(),
     ),
     path(
+        "<int:pk>/reviews",
+        views.RoomReviews.as_view(),
+    ),
+    path(
         "amenities/",
         views.Amenities.as_view(),
     ),
